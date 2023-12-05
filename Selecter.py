@@ -19,17 +19,21 @@ def save_names(filename, names):
 # Function to select a random name
 def select_random_name(names):
     if not names:
-        print("No names available.")
+        print("No names available. It is Christmas!")
         return None
 
     print("Selecting a random name...")
+    time.sleep(1)  # Animation: Wait for 1 second
+    print("...")
+    time.sleep(1)  # Animation: Wait for 1 second
+    print("...")
     time.sleep(1)  # Animation: Wait for 1 second
 
     return random.choice(names)
 
 # Function to ask the user if they appreciate the presented name
 def ask_user_preference(name):
-    user_input = input(f"Do you appreciate the name '{name}'? (yes/no): ")
+    user_input = input(f"Is '{name}' present? (yes/no): ")
     return user_input.lower() == 'yes'
 
 # Main function
@@ -53,7 +57,7 @@ def main():
                 save_names(filename, names)
                 break
             else:
-                print(f"No worries! The user doesn't appreciate the name '{selected_name}', trying again.")
+                print(f"No worries! '{selected_name}' is not present, trying again.")
                 # Select a new random name without removing the previous one
                 selected_name = select_random_name(names)
 
