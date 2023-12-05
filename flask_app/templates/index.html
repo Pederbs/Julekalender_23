@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Name Selector</title>
+</head>
+<body>
+    <h1>Kandidat til å trekke gave!</h1>
+    {% if selected_name %}
+        <p>Er {{ selected_name }} tilstede?</p>
+        <form action="/result" method="post">
+            <input type="hidden" name="selected_name" value="{{ selected_name }}">
+            <button type="submit" name="appreciate" value="yes">JA</button>
+            <button type="submit" name="appreciate" value="no">Nei</button>
+        </form>
+    {% else %}
+        <p>Ingen flere navn tilgjengelig. God Jul!</p>
+    {% endif %}
+    
+    {% if remaining_names %}
+        <h2>Personer som kan trekke</h2>
+        <ul>
+            {% for name in remaining_names %}
+                <li>{{ name }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
