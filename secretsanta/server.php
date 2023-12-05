@@ -1,5 +1,17 @@
 <?php
 
+$logFilePath = 'var/log/ss/remove_log.txt';
+
+function logMessage($message) {
+    global $logFilePath;
+    $timestamp = date('Y-m-d H:i:s');
+    $ipAddress = $_SERVER['REMOTE_ADDR'];
+    $userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : 'Unknown';
+
+    $logMessage = "$timestamp - IP: $ipAddress, User-Agent: $userAgent - $message\n";
+    file_put_contents($logFilePath, $logMessage, FILE_APPEND);
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Handle GET request to retrieve names
     $names = json_decode(file_get_contents('names.json'), true);
@@ -18,6 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
         // Update the JSON file
         file_put_contents('names.json', json_encode($names, JSON_PRETTY_PRINT));
+
+        // Log the removal
+        logMessage("Removed name: $nameToRemove");
 
         echo json_encode(['success' => true]);
     } else {
