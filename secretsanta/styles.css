@@ -14,7 +14,8 @@ body {
 }
 
 button {
-    padding: 10px 20px;
+    margin-top: 20px;
+    padding: 20px 40px;
     font-size: 16px;
     cursor: pointer;
     background-color: #3498db;
@@ -25,4 +26,29 @@ button {
 
 button:hover {
     background-color: #2980b9;
+}
+
+.rest {
+    margin-top: 20px;
+}
+
+.name-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.name-container ul {
+    list-style-type: none;
+    padding: 10;
+    margin: 0;
+}
+
+.name-container li {
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+#result {
+    margin-top: 20px;
 }
